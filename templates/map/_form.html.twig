@@ -1,0 +1,16 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col" style=" margin-bottom: 2%">
+        {{ form_widget(form.name) }}
+    </div>
+    <div class="col" style=" margin-bottom: 2%">
+        {{ form_widget(form.length, {'pattern': '[0-9]{1,5}'}) }}
+    </div>
+    <div class="col" style=" margin-bottom: 2%">
+        {{ form_widget(form.width, {'pattern': '[0-9]{1,5}'}) }}
+    </div>
+    <div class="col">
+        <button class="button">{{ button_label|default('Save') }}</button>
+    </div>
+    {{  form_end(form) }}
+

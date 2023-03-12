@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}   
+        <div class="container">
+        <div class="map-container">
+        <div class="row">    
+        <div class="col" data-style style="margin-left: 2%; margin-top: 2%; visibility: visible">
+                {{ form_start(form) }}
+               <span style="align-items: center">{{ form_label(form.name, 'Добавьте свой маркер!') }}</span>
+            <div class="row">
+                <div class="col" style=" margin-bottom: 2%">
+                    {{ form_widget(form.name) }}
+                </div>
+                <div class="col" style=" margin-bottom: 2%" >
+                    {{ form_widget(form.length, {'pattern': '[0-9]{1,5}'}) }}
+                </div>
+                <div class="col" style=" margin-bottom: 2%" >
+                    {{ form_widget(form.width, {'pattern': '[0-9]{1,5}'}) }}
+                </div>
+                <div class="col">
+                    <button class="button">{{ button_label|default('Добавить') }}</button>
+                </div>
+                {{  form_end(form) }}
+            </div>
+                <div class="point-list">
+                    {% for point in points %}
+                        <div class="points">
+
+                            <div class="row">
+                            <div class="col data-cols-name" data-cols="1">{{ point.name }}</div>
+                            <a href="#"><div class="col data-cols-number" data-cols="2" style="text-align: center;">{{ point.width }} {{ point.length }}</div></a>
+                                    
+                            <div class="col" style="text-align: right; padding-right: 5%;">
+                                <a href="{{ path('app_map_edit', {'id': point.id}) }}">
+                                <i class="bi bi-pencil"></i>
+                                </a>
+
+                                <a href="{{ path('map_delete', {'id': point.id}) }}">
+                                <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                            {# </div> #}
+
+                            </div>
+                        {# </div> #}
+
+
+                    {% endfor %}
+                </div>
+            </div>
+                 {% block map %}
+                 <div class="col">
+                <div id="map" class="map"></div>
+                <a href="{{ path('app_logout') }}"><button class="button" style="width: 100%;"> Выйти </button></a>
+            </div>
+                {% endblock %}
+            </div>
+            
+        </div>
+        </div>
+{% endblock %}
