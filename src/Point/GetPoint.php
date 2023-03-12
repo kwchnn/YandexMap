@@ -13,7 +13,7 @@ class GetPoint implements PointInterface
     public function __construct(private UserRepository $user_repository, private MapRepository $map_repository)
     {}
 
-    public function getUserPoints($email): array
+    public function getUserPoints(string $email): array
     {
         $user = $this->user_repository->getUserByEmail($email);
         return $this->map_repository->findBy(['user_id' => $user->getId()]);

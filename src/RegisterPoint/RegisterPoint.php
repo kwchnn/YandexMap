@@ -13,7 +13,7 @@ class RegisterPoint implements Adapter\RegisterPointInterface
     public function __construct(private ManagerRegistry $manager_registry, private UserRepository $user_repository)
     {}
 
-    public function getFormParams($params, $user_email)
+    public function getFormParams(object $params, string $user_email): void
     {
         $user = $this->user_repository->getUserByEmail($user_email);
         $manager = $this->manager_registry->getManager();
