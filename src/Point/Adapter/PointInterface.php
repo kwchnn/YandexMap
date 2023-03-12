@@ -6,5 +6,5 @@ namespace App\Point\Adapter;
 
 interface PointInterface
 {
-    public function getUserPoints($email): array;
+    public function getUserPoints(string $email): array;
 }
